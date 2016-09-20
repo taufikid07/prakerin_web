@@ -1,114 +1,209 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootsrtap Free Admin Template - SIMINTA | Admin Dashboad Template</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/main-style.css" rel="stylesheet" />
+    <!-- Page-Level CSS -->
+    <link href="assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+   </head>
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/img/fit.png" alt="" />
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- main dropdown -->
+                    <!-- end dropdown-alerts -->
+                </li>
 
-include("model/auth.php");
-include("model/koneksi.php");
-echo '
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-3x"></i>
+                    </a>
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
 
-	 <!-- Begin Body -->
-<body class="padTop53">
-	 <!-- Main Wrapper -->
-	<div id="wrap">
-		 <!-- Header Sections -->
-		<div id="top">
-			<nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
-				<a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
-					<i classs="icon-align-justify"></i>
-				</a>
-				<!-- Logo Sections -->
-				<header class="navbar-header">
-				
-					<a href="index.html" class="navbar-brand">
-					<img src="assest/img/logo.png" alt="" /></a>
-				</header>
-				<!-- End Logo Sections -->
-				<ul class="nav navbar-top-links navbar-right">
-					<!-- Admin Setting Sections -->
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<li class="icon-user"></i>&nbsp; <i class="icon-chevron-down"></li>
-						</a>
-						<ul class="dropdown-menu dropdown-user">
-							<li><a href="#"><i class="icon-user"></i> User Profil </a>
-							</li>
-							<li><a href="#"><i class="icon-gear"></i> Settings </a>
-							</li>
-							<li class="divider"></li>
-							<li><a href="model/logout.php"><i class="icon-signout"></i> Logout </a>
-							</li>
-						</ul>
-					</li>
-					<!-- End Admin setting -->
-				</ul>
-			</nav>
-		</div>
-		<!-- End Header Section -->
-		
-		
-		
-		<!-- Menu Sections -->
-		<div id="left">
-			<div class="media user-media well-small">
-			    <a class="user-link" href="#">
-					<img class="media-object img-thumbnail user-img" alt="User Picture" src="assest/img/user.png" />
-				</a>
-				<br />
-				<div class="media-body">
-					<h5 class="media-heading"> Dheka </h5>
-					<ul class="list-unstyled user-info">
-						<li>
-							<a class="btn btn-success btn-xs btn-circle" style="width:10px;height:12px;"></a> Online
-						</li>
-					</ul>
-				</div>
-				<br />
-			</div>';
-			include("model/leftbar.php")
-			echo '
-		</div>
-		<!-- End Menu Section -->
-		<!-- Page content -->
-		<div id="content">
-			<div class="inner">
-				<div class="row">
-					<div class="col-lg-12">
-						<h1> Admin Dashboard Welcome '.$_SESSION['username'].'</h1>
-					</div>
-				</div>
-				  <hr />
-				 <!-- Block Section -->
-				 <div class="row">
-					<div class="col-lg-12">
-						<div style="text-align: center;">
-							<a class="quick-btn" href="angkutan.php">
-								<i class="icon-check icon-2x"></i>
-								<span> Angkutan <span>
-							</a>
-							<a class="quick-btn" href="rute.php">
-								<i class="icon-signal icon-2x"></i>
-								<span> Rute Jalan <span>
-							</a>
-							
-						</div>
-					</div>
-				</div>
-				 <!-- End Block Section -->
-			</div>
-			</div>
-		</div>
-		<!-- End Page Content -->
-	</div>
+        </nav>
+        <!-- end navbar top -->
 
-	<!-- End Main Wrapper -->';
-include("model/footer.php");
-?>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <!-- user image section-->
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                <img src="assets/img/user.jpg" alt="">
+                            </div>
+                            <div class="user-info">
+                                <div>Dheka <strong>zzz</strong></div>
+                                <div class="user-text-online">
+                                    <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
+                                </div>
+                            </div>
+                        </div>
+                        <!--end user image section-->
+                    </li>
+                    <li class="sidebar-search">
+                        <!-- search section-->
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!--end search section-->
+                    </li>
+                    <li class="selected">
+                        <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="user.php"><i class="fa fa-bar-chart-o fa-fw"></i> User<span class="fa arrow"></span></a>
+                        <!-- second-level-items -->
+                    </li>
+                     <li>
+                        <a href="kontak.php"><i class="fa fa-flask fa-fw"></i>Kontak</a>
+                    </li>
+                    <li>
+                        <a href="komentar.php"><i class="fa fa-table fa-fw"></i>Komentar</a>
+                    </li>
+                    
+                        <!-- second-level-items -->
+                    </li>
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+
+            <div class="row">
+                <!-- Page Header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!--End Page Header -->
+            </div>
+
+            <div class="row">
+                <!-- Welcome -->
+                <div class="col-lg-12">
+                    <div class="alert alert-info">
+                        <i class="fa fa-folder-open"></i><b>&nbsp;Hello ! </b>Welcome Back <b>Dheka Pratama </b>
+                    </div>
+                </div>
+                <!--end  Welcome -->
+            </div>
+
+
+            <div class="row">
+                <!--quick info section -->
+                
+                <!--end quick info section -->
+            </div>
+
+            
+                    <!--End area chart example -->
+                    <!--Simple table example -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i>Simple Table Example
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!--End simple table example -->
+
+                </div>
+
+                
+
+            
+                    <!-- Notifications-->
+                    
+                            <!-- /.list-group -->
+                            
+                    <!--End Chat Panel Example-->
+                </div>
+            </div>
+
+
+         
+
+
+        </div>
+        <!-- end page-wrapper -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="assets/plugins/pace/pace.js"></script>
+    <script src="assets/scripts/siminta.js"></script>
+    <!-- Page-Level Plugin Scripts-->
+    <script src="assets/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/plugins/morris/morris.js"></script>
+    <script src="assets/scripts/dashboard-demo.js"></script>
+
+</body>
+
+</html>

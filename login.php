@@ -1,9 +1,5 @@
 <?php
-/*
-Author: Dheka
-*/
-
-	require('model/koneksi.php');
+require('model/koneksi.php');
 	session_start();
     // If form submitted, insert values into the database.
     if (isset($_POST['username'])){
@@ -28,99 +24,59 @@ Author: Dheka
     }else{
 
 echo '
-<!DOCTYPE html>
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-
-<!-- BEGIN HEAD -->
+<html>
 <head>
-     <meta charset="UTF-8" />
-    <title>FIT Solution Admin | Login Page</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	<meta content="" name="description" />
-	<meta content="" name="author" />
-     <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
-    <!-- GLOBAL STYLES -->
-     <!-- PAGE LEVEL STYLES -->
-     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/css/login.css" />
-    <link rel="stylesheet" href="assets/plugins/magic/magic.css" />
-     <!-- END PAGE LEVEL STYLES -->
-   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootsrtap Free Admin Template - SIMINTA | Admin Dashboad Template</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+   <link href="assets/css/style.css" rel="stylesheet" />
+      <link href="assets/css/main-style.css" rel="stylesheet" />
+
 </head>
-    <!-- END HEAD -->
-
-    <!-- BEGIN BODY -->
-<body >
-
-   <!-- PAGE CONTENT --> 
+<body class="  btn-primary ">
     <div class="container">
-    <div class="text-center">
-        <img src="assets/img/logo.png" id="logoimg" alt=" Logo" />
-    </div>
-    <div class="tab-content">
-    <!-- Untk login -->
-        <div id="login" class="tab-pane active">
-            <form action="" class="form-signin" method="POST" name="login">
-                <p class="text-muted text-center btn-block btn btn-primary btn-rect">
-                    Enter your username and password
-                </p>
-                <input type="text" placeholder="Username" name="username" class="form-control" />
-                <input type="password" placeholder="Password" name="password" class="form-control" />
-                <button class="btn text-muted text-center btn-danger" type="submit" name="submit">Sign in</button>
-            </form>
-        </div>
-        <!-- Untk Lupa password -->
-        <div id="forgot" class="tab-pane">
-            <form action="index.html" class="form-signin">
-                <p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
-                <input type="email"  required="required" placeholder="Your E-mail"  class="form-control" />
-                <br />
-                <button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
-            </form>
-        </div>
-        <!-- Untk Registasi -->
-        <div id="signup" class="tab-pane">
-            <form action="index.html" class="form-signin">
-                <p class="text-muted text-center btn-block btn btn-primary btn-rect">Please Fill Details To Register</p>
-                 <input type="text" placeholder="First Name" class="form-control" />
-                 <input type="text" placeholder="Last Name" class="form-control" />
-                <input type="text" placeholder="Username" class="form-control" />
-                <input type="email" placeholder="Your E-mail" class="form-control" />
-                <input type="password" placeholder="password" class="form-control" />
-                <input type="password" placeholder="Re type password" class="form-control" />
-                <button class="btn text-muted text-center btn-success" type="submit">Register</button>
-            </form>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center logo-margin ">
+              <img src="assets/img/fit.png" alt=""/>
+                </div>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">                  
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+								<a href="index.php" class="text-muted text-center btn-block btn btn-primary btn-rect">Login</a>				
+								<a href="register.php" class="text-muted text-center btn-block btn btn-primary btn-rect">Registrasi</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="text-center">
-        <ul class="list-inline">
-            <li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
-            <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
-            <li><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li>
-        </ul>
-    </div>
-
-
-</div>';
-
- } 
-
-echo'
-	  <!--END PAGE CONTENT -->     
-	      
-      <!-- PAGE LEVEL SCRIPTS -->
-      <script src="assets/plugins/jquery-2.0.3.min.js"></script>
-      <script src="assets/plugins/bootstrap/js/bootstrap.js"></script>
-   <script src="assets/js/login.js"></script>
-      <!--END PAGE LEVEL SCRIPTS -->
-
+     <!-- Core Scripts - Include with every page -->
+    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
 </body>
-    <!-- END BODY -->
 </html>';
+
 ?>

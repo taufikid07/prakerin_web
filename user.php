@@ -1,210 +1,206 @@
-<?php
-include ("model/auth.php");
-include ("model/header.php");
-include ("model/koneksi.php");
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootsrtap Free Admin Template - SIMINTA | Admin Dashboad Template</title>
+    <!-- Core CSS - Include with every page -->
+    <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+      <link href="assets/css/main-style.css" rel="stylesheet" />
 
-// ACTION ===================================================================
-$quser = mysql_query (SELECT * FROM user ORDER BY id_user DESC");
-$t_user = '';
-$i=0;
-while($duser = mysql_fetch_array ($quser)) {
-	$i++;
-	$t_user.='
-	<tr class="gradeA">
-		<td>'.$i.'</td>
-		<td>'.$duser['Nama_Depan'].'</td>
-		<td>'.$duser['Nama_Belakang'].'</td>
-		<td>'.$duser['Email'].'</td>
-		<td class="center">
-		<a class="fancybox btn btn-warning" href="#edit'.$duser['id_user'].'"><i class="icon-pencil"></i>Edit</a>
-		<div id="edit'.$duser['id_user'].'" style="width:500px;display: none;">
-			<div class="judul_fan"><h3>Edit User</h3></div>
-			<hr>
-		<form class="form-horizontal" method="post" action="model/muser.php?id_user='$duser['id_user'].'">
-		 <div class="form-group">
-					<label class="control-label col-lg-4">Nama Depan</label>
-					<div class="col-lg-6">
-						<input type="text" id="required2" name="depan" class="form-control" value="'.$duser['Nama_Depan'].'"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-4">Nama Belakang</label>
-					<div class="col-lg-6">
-						<input type="text" id="required3" name="belakang" class="form-control" velue="'$duser['Nama_Belakang'].'"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-4">Email</label>
-					<div class="col-lg-6">
-						<input type="text" id="required3" name="email" class="form-control" value="'$duser['Email'].'"/>
-					</div>
-				</div>
-				<div class="modal-footer">
-				<input type="submit" class="btn btn-primary" value="Update change" name="update">
-			</div>
-			
-		</form>
-		</div>
-		
-		<a href="model/muser.php?delete=delete&id_user='.$duser['id_user'].'"onclick="return delete_confirm();" class="btn btn-danger btn-flat"><i class="icon-remove icon-white"></i>Delete</a>
-		</td>
-	</tr>';
-}
+    <!-- Page-Level CSS -->
+    <link href="assets/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 
-echo '
-	 <!-- Begin Body -->
-<body class="padTop53">
+</head>
 
-	 <!-- Main Wrapper -->
-	<div id="wrap">
-		 <!-- Header Section -->
-		<div id="top">
-			<nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
-				<a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
-					<i class="icon-align-justify"></i>
-				</a>
-				<!-- Logo Section -->
-				<header class="navbar-header">
-				
-					<a href="index.html" class="navbar-brand">
-					<img src="assest/img/logo.png" alt="" /></a>
-				</header>
-				<!-- End Logo Section -->
-				<ul class="nav navbar-top-links navbar-right">
-					<!-- Admin Settings Sections -->
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="icon-user"></i>&nbsp; <i class="icon-chevron-down"></i>
-						</a>
-						<ul class="dropdown-menu dropdown-user">
-							<li><a href="#"><i class="icon-user"></i>User Profil</a>
-							</li>
-							<li><a href="#"><i class="icon-gear"></i>Setiings</a>
-							</li>
-							<li class="divider">
-							<li><a href="model/logout.php"><i class="icon-signout"></i>Logout</a>
-							</li>
-						</ul>
-					</li>
-					<!-- End Admin Setiing -->
-				</ul>
-			</nav>
-		</div>
-		<!-- End Header Section -->
-		
-		<!-- Menu Section -->
-		<div id="left">
-			<div class="media user-media well-small">
-				<a class="user-link" href="#"
-					<img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/logo.png" />
-				</a>
-				<br />
-				<div class="media-body">
-					<h5 class="media-heading">Dheka</h5>
-					<ul class="list-unstyled user-info">
-						<li>
-							 <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a>Online
-						</li>
-					</ul>
-				</div>
-				<br />
-			</div>';
-		include ("model/leftbar.php");
-		echo '
-		</div>
-		<!-- End Menu Section -->
-		
-		
-		<!-- Page Content -->
-		<div id="content"
-		
-			<div class="inner">
-				<div class="row">
-					<div class="col-lg-12">
-						<h2> Data User </h2>
-					</div>
-				</div>
-				<hr />
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<button class="btn btn-succes" data-toggle="modal" data-target="#uiModal"> Add New User </button>
-							</div>
-							<div class="panel-body">
-								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-										<thead>
-											<tr>
-												<th>No</th>
-												<th>Nama Depan</th>
-												<th>Nama Belakang</th>
-												<th>Email</th>
-												<th>Action<th>
-											</tr>
-										</thead>
-										<tbody>
-											'.$t_user.'
-										</tbody>
-									</table>
-								</div>
-							</div>
-							</div>
-						</div>
-				</div>
-				
-				<!-- Popup Baru -->
-				<div clas="col-lg-12">
-					<div class="modal fade" id="uiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="H3">Add New User</h4>
-								</div>
-								<div class="modal-body">
-									<form action="model/muser.php" class="form-horizontal" id="block-validate" method="POST">
-									
-									<div class="form-group">
-										<label class="control-label col-lg-4">Nama Depan</label>
-										<div class="col-lg-6">
-											<input type="text" id="required2" name="depan" class="form-control />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-lg-4">Nama Belakang</label>
-										<div class="col-lg-6">
-											<input type="text" id="required3" name="belakang" class="form-control" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-lg-4">Email</label>
-										<div class="col-lg-6">
-											<textarea id="whysihtml5" class="form-control" rows="3" name="email"></textarea>
-										</div>
-									</div>
-									
-									
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<input type="submit" class="btn btn-primary" value="Save change" name="insert">
-							</div>
-							</form>
-						</div>
-					</div>
-				</div>
-		</div>
-	</div>
-	<div class="row"></div>
-	<div c;ass="row"></div>
-	</div>
-  </div>
-   <!-- End Page Content -->
- </div>
-	 <!-- End Main Wrapper -->';
-	 
-include ("model/footer.php");
-?>	 
-	 
-										
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.php">
+                    <img src="assets/img/fit.png" alt="" />
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- main dropdown -->
+                
+                    <!-- dropdown-messages -->
+                    <!-- end dropdown-alerts -->
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-3x"></i>
+                    </a>
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                        </li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <!-- user image section-->
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                <img src="assets/img/user.jpg" alt="">
+                            </div>
+                            <div class="user-info">
+                                <div>Dheka<strong>zzz</strong></div>
+                                <div class="user-text-online">
+                                    <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
+                                </div>
+                            </div>
+                        </div>
+                        <!--end user image section-->
+                    </li>
+                    <li class="sidebar-search">
+                        <!-- search section-->
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!--end search section-->
+                    </li>
+                    <li class="">
+                        <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="user.php"><i class="fa fa-bar-chart-o fa-fw"></i>User<span class="fa arrow"></span></a>
+                        <!-- second-level-items -->
+                    </li>
+                     <li>
+                        <a href="kontak.php"><i class="fa fa-flask fa-fw"></i>Kontak</a>
+                    </li>
+                    <li class="selected">
+                        <a href="komentar.php"><i class="fa fa-table fa-fw"></i>Komentar</a>
+                    </li>
+                        <!-- second-level-items -->
+                    </li>
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+
+            
+            <div class="row">
+                 <!--  page header -->
+                <div class="col-lg-12">
+                    <h1 class="page-header">Tables</h1>
+                </div>
+                 <!-- end  page header -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             Advanced Tables
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Nomor</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX">
+                                            <td>1</td>
+                                            <td>Dheka</td>
+                                            <td>Soekarno Hatta</td>
+                                            <td>dheka@fujicon-japan.com</td> 
+                                        </tr>
+                                        <tr class="even gradeC">
+                                            <td>2</td>
+                                            <td>Ryan</td>
+                                            <td>Soekarno Hatta</td>
+                                            <td>fazryan@fujicon-japan.com</td>
+                                        </tr>
+                                        <tr class="odd gradeA">
+                                            <td>3</td>
+                                            <td>Taufik</td>
+                                            <td>Soekarno Hatta</td>
+                                            <td>taufik@fujicon-japan.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+							<a href="newuser.php" class="text-muted text-center btn-block btn btn-primary btn-rect">Create New User</a>
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+                    <!--  end  Context Classes  -->
+                </div>
+            </div>
+        </div>
+        <!-- end page-wrapper -->
+
+    </div>
+    <!-- end wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="assets/plugins/pace/pace.js"></script>
+    <script src="assets/scripts/siminta.js"></script>
+    <!-- Page-Level Plugin Scripts-->
+    <script src="assets/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+
+</body>
+
+</html>
